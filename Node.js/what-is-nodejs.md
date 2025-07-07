@@ -5,7 +5,7 @@
 
 **Node.js** is a **runtime environment** that allows you to **run JavaScript on the server side**, outside the browser.
 
-> 💡 It helps you use JavaScript to build **backend applications** like APIs, servers, and more.
+>💡 It helps you use JavaScript to build **backend applications** like APIs, servers, and more.
 
 ---
 
