@@ -57,6 +57,7 @@ app.route('/book')
   .get((req, res) => res.send('Get a book'))
   .post((req, res) => res.send('Add a book'))
   .put((req, res) => res.send('Update the book'));
+  
 🔹 4. Real-World Analogy
 Routing is like a switchboard in a call center:
 Depending on the number you press (GET /, POST /login), your request is routed to the appropriate handler (person).
