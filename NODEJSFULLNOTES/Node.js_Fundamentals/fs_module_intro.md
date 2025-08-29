@@ -125,3 +125,78 @@ fs.rmdir('myFolder', (err) => {
 - Provides both **sync** and **async** methods.
 - Essential for reading, writing, appending, deleting, and managing files in Node.js.
 
+```js
+
+🔹 1. fs.stat (File Information)
+What it does:
+
+Provides metadata (information) about a file or directory.
+
+Info includes size, creation time, modification time, file type, etc.
+
+Example:
+const fs = require('fs');
+
+fs.stat('demo.txt', (err, stats) => {
+  if (err) throw err;
+  console.log(stats);
+  console.log("Is file? ", stats.isFile());
+  console.log("Is directory? ", stats.isDirectory());
+  console.log("File size: ", stats.size, "bytes");
+});
+
+Sample Output:
+Stats {
+  dev: 123456,
+  mode: 33188,
+  size: 56,
+  atime: 2025-08-18T07:30:00Z,
+  mtime: 2025-08-18T07:31:00Z,
+  ctime: 2025-08-18T07:31:00Z,
+  birthtime: 2025-08-18T07:29:00Z
+}
+Is file?  true
+Is directory?  false
+File size:  56 bytes
+
+
+👉 Use fs.stat when you need details about a file (size, timestamps, type, etc.).
+
+🔹 2. fs.watch (File Watcher)
+What it does:
+
+Watches a file or directory for changes.
+
+Triggers a callback whenever the file changes (modified, renamed, deleted, etc.).
+
+Example:
+const fs = require('fs');
+
+fs.watch('demo.txt', (eventType, filename) => {
+  console.log(`File ${filename} changed! Event: ${eventType}`);
+});
+
+Sample Output:
+File demo.txt changed! Event: change
+File demo.txt changed! Event: rename
+
+Key Points:
+
+eventType → "rename" or "change".
+
+filename → the file that changed (sometimes may be null on some OS).
+
+Useful for real-time monitoring, like log files, config changes, auto-reload, etc.
+
+✅ Difference Between fs.stat vs fs.watch
+Feature	fs.stat 📝 (Info)	fs.watch 👀 (Monitor)
+Purpose	Get metadata of file/folder	Watch file/folder for changes
+Returns	File details (stats object)	Events (change, rename)
+Usage	Size, type, timestamps	Auto-reload, live monitoring
+Execution	One-time call	Continuous event listener
+
+👉 In short:
+
+Use stat if you want to know about a file.
+
+Use watch if you want to react to changes in a file.
